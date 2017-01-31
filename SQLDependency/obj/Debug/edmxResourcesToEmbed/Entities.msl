@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SQLDependency_ExampleModelStoreContainer" CdmEntityContainer="SQLDependency_ExampleEntities">
+    <EntitySetMapping Name="Conversation_Detail">
+      <EntityTypeMapping TypeName="SQLDependency_ExampleModel.Conversation_Detail">
+        <MappingFragment StoreEntitySet="Conversation_Detail">
+          <ScalarProperty Name="CD_ID" ColumnName="CD_ID" />
+          <ScalarProperty Name="AccountSend" ColumnName="AccountSend" />
+          <ScalarProperty Name="Conversation_ID" ColumnName="Conversation_ID" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

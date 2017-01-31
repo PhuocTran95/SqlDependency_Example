@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MessengerModelStoreContainer" CdmEntityContainer="MessengerEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="MessengerModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PW" ColumnName="PW" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StatusMessage" ColumnName="StatusMessage" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="isOnline" ColumnName="isOnline" />
+          <ScalarProperty Name="canLock" ColumnName="canLock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversations">
+      <EntityTypeMapping TypeName="MessengerModel.Conversation">
+        <MappingFragment StoreEntitySet="Conversation">
+          <ScalarProperty Name="Conversation_ID" ColumnName="Conversation_ID" />
+          <ScalarProperty Name="AccountA" ColumnName="AccountA" />
+          <ScalarProperty Name="AccountB" ColumnName="AccountB" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversation_Detail">
+      <EntityTypeMapping TypeName="MessengerModel.Conversation_Detail">
+        <MappingFragment StoreEntitySet="Conversation_Detail">
+          <ScalarProperty Name="CD_ID" ColumnName="CD_ID" />
+          <ScalarProperty Name="AccountSend" ColumnName="AccountSend" />
+          <ScalarProperty Name="Conversation_ID" ColumnName="Conversation_ID" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favourites">
+      <EntityTypeMapping TypeName="MessengerModel.Favourite">
+        <MappingFragment StoreEntitySet="Favourite">
+          <ScalarProperty Name="Favourite_ID" ColumnName="Favourite_ID" />
+          <ScalarProperty Name="AccountA" ColumnName="AccountA" />
+          <ScalarProperty Name="AccountB" ColumnName="AccountB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupChats">
+      <EntityTypeMapping TypeName="MessengerModel.GroupChat">
+        <MappingFragment StoreEntitySet="GroupChat">
+          <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupChat_Detail">
+      <EntityTypeMapping TypeName="MessengerModel.GroupChat_Detail">
+        <MappingFragment StoreEntitySet="GroupChat_Detail">
+          <ScalarProperty Name="GD_ID" ColumnName="GD_ID" />
+          <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupChat_Text">
+      <EntityTypeMapping TypeName="MessengerModel.GroupChat_Text">
+        <MappingFragment StoreEntitySet="GroupChat_Text">
+          <ScalarProperty Name="GT_ID" ColumnName="GT_ID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+          <ScalarProperty Name="AccSend" ColumnName="AccSend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationTmps">
+      <EntityTypeMapping TypeName="MessengerModel.NotificationTmp">
+        <MappingFragment StoreEntitySet="NotificationTmp">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Relationships">
+      <EntityTypeMapping TypeName="MessengerModel.Relationship">
+        <MappingFragment StoreEntitySet="Relationship">
+          <ScalarProperty Name="Relationship_ID" ColumnName="Relationship_ID" />
+          <ScalarProperty Name="AccountA" ColumnName="AccountA" />
+          <ScalarProperty Name="AccountB" ColumnName="AccountB" />
+          <ScalarProperty Name="Relationship_Date" ColumnName="Relationship_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

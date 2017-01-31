@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SQLDependency_ExampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Conversation_Detail">
+          <Key>
+            <PropertyRef Name="CD_ID" />
+          </Key>
+          <Property Name="CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountSend" Type="int" />
+          <Property Name="Conversation_ID" Type="int" />
+          <Property Name="SendDate" Type="datetime" />
+          <Property Name="ReadDate" Type="datetime" />
+          <Property Name="Content" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="SQLDependency_ExampleModelStoreContainer">
+          <EntitySet Name="Conversation_Detail" EntityType="Self.Conversation_Detail" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SQLDependency_ExampleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Conversation_Detail">
+          <Key>
+            <PropertyRef Name="CD_ID" />
+          </Key>
+          <Property Name="CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountSend" Type="Int32" />
+          <Property Name="Conversation_ID" Type="Int32" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
+          <Property Name="ReadDate" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SQLDependency_ExampleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Conversation_Detail" EntityType="Self.Conversation_Detail" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SQLDependency_ExampleModelStoreContainer" CdmEntityContainer="SQLDependency_ExampleEntities">
+          <EntitySetMapping Name="Conversation_Detail">
+            <EntityTypeMapping TypeName="SQLDependency_ExampleModel.Conversation_Detail">
+              <MappingFragment StoreEntitySet="Conversation_Detail">
+                <ScalarProperty Name="CD_ID" ColumnName="CD_ID" />
+                <ScalarProperty Name="AccountSend" ColumnName="AccountSend" />
+                <ScalarProperty Name="Conversation_ID" ColumnName="Conversation_ID" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

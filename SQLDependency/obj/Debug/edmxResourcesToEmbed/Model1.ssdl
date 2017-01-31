@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MessengerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Account_ID" />
+    </Key>
+    <Property Name="Account_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="255" />
+    <Property Name="PW" Type="varchar" MaxLength="255" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="Phone" Type="varchar" MaxLength="255" />
+    <Property Name="Email" Type="varchar" MaxLength="255" />
+    <Property Name="StatusMessage" Type="varchar(max)" />
+    <Property Name="ProfileImage" Type="varbinary(max)" />
+    <Property Name="isOnline" Type="bit" />
+    <Property Name="canLock" Type="bit" />
+  </EntityType>
+  <EntityType Name="Conversation">
+    <Key>
+      <PropertyRef Name="Conversation_ID" />
+    </Key>
+    <Property Name="Conversation_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountA" Type="int" />
+    <Property Name="AccountB" Type="int" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Conversation_Detail">
+    <Key>
+      <PropertyRef Name="CD_ID" />
+    </Key>
+    <Property Name="CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountSend" Type="int" />
+    <Property Name="Conversation_ID" Type="int" />
+    <Property Name="SendDate" Type="datetime" />
+    <Property Name="ReadDate" Type="datetime" />
+    <Property Name="Content" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Favourite">
+    <Key>
+      <PropertyRef Name="Favourite_ID" />
+    </Key>
+    <Property Name="Favourite_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountA" Type="int" />
+    <Property Name="AccountB" Type="int" />
+  </EntityType>
+  <EntityType Name="GroupChat">
+    <Key>
+      <PropertyRef Name="Group_ID" />
+    </Key>
+    <Property Name="Group_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastUpdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GroupChat_Detail">
+    <Key>
+      <PropertyRef Name="GD_ID" />
+    </Key>
+    <Property Name="GD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Group_Id" Type="int" />
+    <Property Name="Account" Type="int" />
+  </EntityType>
+  <EntityType Name="GroupChat_Text">
+    <Key>
+      <PropertyRef Name="GT_ID" />
+    </Key>
+    <Property Name="GT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="varchar(max)" />
+    <Property Name="SendDate" Type="datetime" />
+    <Property Name="Group_ID" Type="int" />
+    <Property Name="AccSend" Type="int" />
+  </EntityType>
+  <EntityType Name="NotificationTmp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="messageID" Type="int" />
+  </EntityType>
+  <EntityType Name="Relationship">
+    <Key>
+      <PropertyRef Name="Relationship_ID" />
+    </Key>
+    <Property Name="Relationship_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountA" Type="int" />
+    <Property Name="AccountB" Type="int" />
+    <Property Name="Relationship_Date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Conversat__Accou__49C3F6B7">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Conversation" Type="Self.Conversation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="Conversation">
+        <PropertyRef Name="AccountA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conversat__Accou__5070F446">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Conversation_Detail" Type="Self.Conversation_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="Conversation_Detail">
+        <PropertyRef Name="AccountSend" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conversat__Conve__5165187F">
+    <End Role="Conversation" Type="Self.Conversation" Multiplicity="0..1" />
+    <End Role="Conversation_Detail" Type="Self.Conversation_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation">
+        <PropertyRef Name="Conversation_ID" />
+      </Principal>
+      <Dependent Role="Conversation_Detail">
+        <PropertyRef Name="Conversation_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favourite__Accou__02FC7413">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Favourite" Type="Self.Favourite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="Favourite">
+        <PropertyRef Name="AccountA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Accou__08B54D69">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GroupChat_Detail" Type="Self.GroupChat_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="GroupChat_Detail">
+        <PropertyRef Name="Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__AccSe__0C85DE4D">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GroupChat_Text" Type="Self.GroupChat_Text" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="GroupChat_Text">
+        <PropertyRef Name="AccSend" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Group__07C12930">
+    <End Role="GroupChat" Type="Self.GroupChat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GroupChat_Detail" Type="Self.GroupChat_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupChat">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="GroupChat_Detail">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Group__0B91BA14">
+    <End Role="GroupChat" Type="Self.GroupChat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GroupChat_Text" Type="Self.GroupChat_Text" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupChat">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="GroupChat_Text">
+        <PropertyRef Name="Group_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificat__messa__5CD6CB2B">
+    <End Role="Conversation_Detail" Type="Self.Conversation_Detail" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NotificationTmp" Type="Self.NotificationTmp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation_Detail">
+        <PropertyRef Name="CD_ID" />
+      </Principal>
+      <Dependent Role="NotificationTmp">
+        <PropertyRef Name="messageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Relations__Accou__36B12243">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Relationship" Type="Self.Relationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="Relationship">
+        <PropertyRef Name="AccountA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MessengerModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conversation" EntityType="Self.Conversation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conversation_Detail" EntityType="Self.Conversation_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Favourite" EntityType="Self.Favourite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupChat" EntityType="Self.GroupChat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupChat_Detail" EntityType="Self.GroupChat_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupChat_Text" EntityType="Self.GroupChat_Text" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NotificationTmp" EntityType="Self.NotificationTmp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Relationship" EntityType="Self.Relationship" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Conversat__Accou__49C3F6B7" Association="Self.FK__Conversat__Accou__49C3F6B7">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Conversation" EntitySet="Conversation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conversat__Accou__5070F446" Association="Self.FK__Conversat__Accou__5070F446">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Conversation_Detail" EntitySet="Conversation_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conversat__Conve__5165187F" Association="Self.FK__Conversat__Conve__5165187F">
+      <End Role="Conversation" EntitySet="Conversation" />
+      <End Role="Conversation_Detail" EntitySet="Conversation_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favourite__Accou__02FC7413" Association="Self.FK__Favourite__Accou__02FC7413">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Favourite" EntitySet="Favourite" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Accou__08B54D69" Association="Self.FK__GroupChat__Accou__08B54D69">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="GroupChat_Detail" EntitySet="GroupChat_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__AccSe__0C85DE4D" Association="Self.FK__GroupChat__AccSe__0C85DE4D">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="GroupChat_Text" EntitySet="GroupChat_Text" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Group__07C12930" Association="Self.FK__GroupChat__Group__07C12930">
+      <End Role="GroupChat" EntitySet="GroupChat" />
+      <End Role="GroupChat_Detail" EntitySet="GroupChat_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Group__0B91BA14" Association="Self.FK__GroupChat__Group__0B91BA14">
+      <End Role="GroupChat" EntitySet="GroupChat" />
+      <End Role="GroupChat_Text" EntitySet="GroupChat_Text" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificat__messa__5CD6CB2B" Association="Self.FK__Notificat__messa__5CD6CB2B">
+      <End Role="Conversation_Detail" EntitySet="Conversation_Detail" />
+      <End Role="NotificationTmp" EntitySet="NotificationTmp" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Relations__Accou__36B12243" Association="Self.FK__Relations__Accou__36B12243">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Relationship" EntitySet="Relationship" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

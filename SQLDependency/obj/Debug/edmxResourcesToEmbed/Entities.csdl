@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SQLDependency_ExampleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Conversation_Detail">
+    <Key>
+      <PropertyRef Name="CD_ID" />
+    </Key>
+    <Property Name="CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountSend" Type="Int32" />
+    <Property Name="Conversation_ID" Type="Int32" />
+    <Property Name="SendDate" Type="DateTime" Precision="3" />
+    <Property Name="ReadDate" Type="DateTime" Precision="3" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="SQLDependency_ExampleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Conversation_Detail" EntityType="Self.Conversation_Detail" />
+  </EntityContainer>
+</Schema>
